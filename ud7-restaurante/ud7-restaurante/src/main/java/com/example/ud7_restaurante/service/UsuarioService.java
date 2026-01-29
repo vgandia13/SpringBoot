@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.ud7_restaurante.dto.UsuarioDTO;
 import com.example.ud7_restaurante.exception.ConflictoException;
+import com.example.ud7_restaurante.exception.RecursoNoEncontradoException;
 import com.example.ud7_restaurante.model.Usuario;
 import com.example.ud7_restaurante.repository.UsuarioRepository;
 
@@ -31,12 +32,30 @@ public class UsuarioService {
         usuarioRepository.save(u);
     }
 
+    public UsuarioDTO obtenerUsuario(String username){
+        Optional<Usuario> opt = usuarioRepository.findByUsuario(username);
+        if(opt.isEmpty())
+            throw new RecursoNoEncontradoException(username);
+
+        Usuario usuario = opt.get();
+        return entityToDto(usuario);
+    }
+
     public Usuario dtoToEntity(UsuarioDTO dto){
         return new Usuario
         (
             dto.getId(),
             dto.getUsuario(),
             dto.getContraseña()
+        );
+    }
+
+    public UsuarioDTO entityToDto(Usuario usuario){
+        return new UsuarioDTO
+        (
+            usuario.getId(),
+            usuario.getUsuario(),
+            usuario.getContraseña()
         );
     }
 }
