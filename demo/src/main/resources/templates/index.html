@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Página de Inicio</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/base :: menu}"></div>
+
+    <h1>¡Bienvenido a mi aplicación Spring Boot!</h1>
+    <p>Lista de personas registradas en el sistema:</p>
+
+    <ul>
+        <li th:each="p : ${personas}" th:text="${p}"></li>
+    </ul>
+</body>
+</html>

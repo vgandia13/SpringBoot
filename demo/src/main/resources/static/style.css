@@ -1,0 +1,5 @@
+body { font-family: sans-serif; margin: 40px; line-height: 1.6; }
+.error-msg { color: #d9534f; font-weight: bold; }
+input.input-error { border: 2px solid #d9534f; background-color: #f9f2f2; }
+nav { background: #333; padding: 1rem; border-radius: 8px; }
+nav a { color: white; text-decoration: none; margin-right: 15px; }
