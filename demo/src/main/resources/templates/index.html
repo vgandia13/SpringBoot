@@ -2,17 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Página de Inicio</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <title>Panel de Gestión</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
     <div th:replace="~{fragments/base :: menu}"></div>
 
-    <h1>¡Bienvenido a mi aplicación Spring Boot!</h1>
-    <p>Lista de personas registradas en el sistema:</p>
+    <h1>Usuarios Registrados</h1>
 
-    <ul>
-        <li th:each="p : ${personas}" th:text="${p}"></li>
-    </ul>
+    <table border="1" style="width:100%; text-align:left; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: #eee;">
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="u : ${personas}">
+                <td th:text="${u.id}"></td>
+                <td th:text="${u.nombre}"></td>
+                <td th:text="${u.email}"></td>
+                <td>
+                    <a th:href="@{/eliminar/{id}(id=${u.id})}" 
+                       onclick="return confirm('¿Seguro que quieres eliminarlo?')" 
+                       style="color: red;">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p th:if="${#lists.isEmpty(personas)}">No hay usuarios en la base de datos.</p>
 </body>
 </html>
