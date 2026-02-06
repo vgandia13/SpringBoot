@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Confirmar Borrado</title>
+</head>
+<body>
+    <h1>¿Estás seguro?</h1>
+    <p>Estás a punto de eliminar al estudiante <strong th:text="${nombre}"></strong> con ID: <strong th:text="${id}"></strong>.</p>
+    <p>Esta acción no se puede deshacer.</p>
+
+    <form th:action="@{/estudiantes/borrar/{id}(id=${id})}" method="post">
+        <button type="submit">Sí, eliminar definitivamente</button><br>
+        <a th:href="@{/estudiantes}">Cancelar y volver</a>
+    </form>
+</body>
+</html>

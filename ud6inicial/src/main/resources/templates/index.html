@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sistema de Gestión Bibliotecaria</title>
+</head>
+<body>
+    <h1>Bienvenido a la Biblioteca</h1>
+    <p>Selecciona una opción para comenzar:</p>
+    
+    <ul>
+        <li>
+            <a th:href="@{/libros}">Gestionar Libros</a>
+        </li>
+        <li>
+            <a th:href="@{/estudiantes}">Gestionar Estudiantes</a>
+        </li>
+    </ul>
+</body>
+</html>

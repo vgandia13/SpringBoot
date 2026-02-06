@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Alquilar Libro</title>
+</head>
+<body>
+    <h1>Alquilar Libro </h1>
+    
+    <form th:action="@{/libros/alquilar/{id}(id=${libroId})}" method="post">
+        <label>Selecciona un Estudiante:</label>
+        <select name="estudianteId" required>
+            <option value="">-- Elige un estudiante --</option>
+            <option th:each="e : ${estudiantes}" 
+                    th:value="${e.id}" 
+                    th:text="${e.nombre} + ' ' + ${e.apellidos}">
+            </option>
+        </select>
+        <br/><br/>
+        <button type="submit">Confirmar Alquiler</button>
+    </form>
+    
+    <br/>
+    <a th:href="@{/libros/}">Cancelar</a>
+</body>
+</html>

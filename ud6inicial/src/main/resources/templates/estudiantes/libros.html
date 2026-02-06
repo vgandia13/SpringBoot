@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Libros del Estudiante</title>
+</head>
+<body>
+    <h1 th:text="'Libros alquilados por: ' + ${estudiante.nombre} + ' ' + ${estudiante.apellidos}"></h1>
+
+    <div th:if="${#lists.isEmpty(libros)}">
+        <p>Este estudiante no tiene libros alquilados actualmente. 📭</p>
+    </div>
+
+    <table border="1" th:if="${not #lists.isEmpty(libros)}">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="libro : ${libros}">
+                <td th:text="${libro.titulo}"></td>
+                <td th:text="${libro.autor}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br/>
+    <a th:href="@{/estudiantes}">Volver a la lista de estudiantes</a>
+</body>
+</html>
