@@ -3,7 +3,7 @@ package com.example.ud7productosapi.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.ud7productosapi.model.Producto;
+import com.example.ud7productosapi.DTO.ProductoDTO;
 import com.example.ud7productosapi.service.ProductoService;
 
 import jakarta.validation.Valid;
@@ -29,16 +29,16 @@ public class ProductoController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Producto> crearProducto(@Valid @RequestBody Producto producto) {
+    public ResponseEntity<ProductoDTO> crearProducto(@Valid @RequestBody ProductoDTO productoDto) {
         return ResponseEntity.status(HttpStatus.CREATED)
-            .body(productoService.guardarProducto(producto));
+            .body(productoService.guardarProducto(productoDto));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Producto> obtenerProductoPorId(@PathVariable Long id) {
-        Producto producto = productoService.obtenerProductoPorId(id);
-        if (producto != null) {
-            return ResponseEntity.ok(producto);
+    public ResponseEntity<ProductoDTO> obtenerProductoPorId(@PathVariable Long id) {
+        ProductoDTO productodDto = productoService.obtenerProductoPorId(id);
+        if (productodDto != null) {
+            return ResponseEntity.ok(productodDto);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -51,12 +51,12 @@ public class ProductoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id, @Valid @RequestBody Producto producto) {
-        return ResponseEntity.status(HttpStatus.OK).body(productoService.actualizarProducto(id, producto));
+    public ResponseEntity<ProductoDTO> actualizarProducto(@PathVariable Long id, @Valid @RequestBody ProductoDTO productodDto) {
+        return ResponseEntity.ok(productoService.actualizarProducto(id, productodDto));
     }
 
     @GetMapping("")
-    public ResponseEntity<List<Producto>> obtenerListaProductos() {
+    public ResponseEntity<List<ProductoDTO>> obtenerListaProductos() {
         return ResponseEntity.ok(productoService.obtenerListaProductos());
     }
 }
